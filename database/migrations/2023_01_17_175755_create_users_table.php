@@ -14,18 +14,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('user', function (Blueprint $table) {
-                $table->integer('id_user', true);
-                $table->integer('id_role');
-                $table->string('username', 50);
-                $table->string('email', 50);
-                $table->string('password', 225);    
-                // foreign key
-                $table
-                    ->foreign('id_role')
-                    ->references('id_role')
-                    ->on('role')
-                    ->onUpdate('cascade')
-                    ->onDelete('cascade');
+            $table->char('id_user', 8)->primary();
+            $table->integer('id_role');
+            $table->string('username', 50);
+            $table->string('email', 50);
+            $table->string('password', 225);
+            // foreign key
+            $table
+                ->foreign('id_role')
+                ->references('id_role')
+                ->on('role')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

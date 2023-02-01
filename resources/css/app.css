@@ -1,7 +1,7 @@
 :root {
     --main-bg-color: #009d63;
-    --main-text-color: #fff;
-    --second-text-color: #bbbec5;
+    --main-text-color: #000;
+    --second-text-color: #000;
     --second-bg-color: #c1efde;
   }
   
@@ -73,7 +73,7 @@
   
   .sidebar .nav-link .feather {
     margin-right: 4px;
-    color: #727272;
+    color: #faf9f9;
   }
   
   .sidebar .nav-link.active {

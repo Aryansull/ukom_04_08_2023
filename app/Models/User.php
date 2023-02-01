@@ -14,6 +14,6 @@ class User extends Model
     // protected $primaryKey = 'id_user';
     // public $incrementing = false;
     // public $keyType = 'string';
-    // protected $fillable = ['id_user','id_role','username','email','password'];
+    protected $fillable = ['id_user', 'id_role', 'username', 'email', 'password'];
     protected $guarded = [];
 }
