@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\mahasiswaController;
 use App\Http\Controllers\roleController;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\kaprogController;
 use App\Http\Controllers\PostController;
 
 /*
@@ -29,7 +30,7 @@ use App\Http\Controllers\PostController;
 //     return view('posts', ['title' => 'blog']);
 // });
 
-Route::get('/', function() {
+Route::get('/', function () {
     return view('dashboard.index');
 });
 
@@ -38,3 +39,11 @@ Route::resource('mahasiswa', mahasiswaController::class);
 Route::resource('role', roleController::class);
 
 Route::resource('user', userController::class);
+
+// kaprog
+Route::get('/kaprog', [kaprogController::class, 'index']);
+Route::get('/kaprog/create', [kaprogController::class, 'create']);
+Route::post('/kaprog/store', [kaprogController::class, 'store']);
+Route::get('/kaprog/edit/{id}', [kaprogController::class, 'edit']);
+Route::post('/kaprog/edit/update', [kaprogController::class, 'update']);
+Route::get('/kaprog/destory/{id}', [kaprogController::class, 'destory']);

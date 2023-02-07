@@ -13,7 +13,7 @@
 
 <body>
 
-  <div class="d-flex" id="wrapper">
+  <div class="d-flex bg-white" id="wrapper">
     <!-- sidebar start-->
     <div class="bg-light" id="sidebar-wrapper">
       <div class="sidebar-heading">
@@ -27,21 +27,16 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="user">
             <span data-feather="file" class="align-text-bottom"></span>
             <i class="bi bi-kanban-fill mr-2"></i> Manage Akun
           </a>
         </li>
         <li class="nav-item  has-submenu">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="/kaprog">
             <span data-feather="shopping-cart" class="align-text-bottom"></span>
             <i class="bi bi-people-fill mr-2 dropdown-toggle " data-bs-toggle=" dropdown" aria-expanded="false"></i> Manage User
           </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">
@@ -91,7 +86,7 @@
       <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom bg-light mb-2 px-3 py-2">
         <div class="d-flex align-item-center">
           <i class="bi bi-list fs-4 me-3" id="menu-toggle"></i>
-          <h2 class="fs-2 m-0">Dashboard</h2>
+          <h2 class="fs-2 m-0">Admin</h2>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>

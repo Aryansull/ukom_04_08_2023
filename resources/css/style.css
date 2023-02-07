@@ -1,0 +1,20 @@
+body{
+    background-color: aqua;
+}
+
+:root {
+    --offcanvas-width: 270px;
+    --topNavbarHeight: 56x;
+  }
+  
+  .sidebar-nav {
+    width: var(--offcanvas-width);
+  }
+  
+  @media (min-width: 992px){
+    .sidebar-nav {
+      transform: none;
+      visibility: visible !important;
+      top: var(--topNavbarHeight);
+    }
+  }

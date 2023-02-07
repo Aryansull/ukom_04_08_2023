@@ -1,16 +1,18 @@
 @extends('layout.template')
 @section('content')
 
-<div class="card mx-auto overflow-auto px-2">
+<div class="card mx-auto overflow-auto px-2 shadow-sm">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 
-  <div>
-    <h5 class="fw-bold border-bottom py-2 px-1">List User</h5>
+  <div class=" border-bottom">
+    <h5 class="fw-bold text-center pt-2">List User</h5>
   </div>
 
   <nav class="navbar bg-body-tertiary ">
     <div class="container-fluid p-0 mb-1">
-      <form class="d-flex" action="{{ url('user') }}" method="GET">
-        <input class="form-control w-75 input-sm me-1" type="text" name="search" placeholder="Masukkan kata kunci" aria-label="Search">
+      <form class="d-flex" action="{{url('user')}}" method="GET">
+        @csrf
+        <input class="form-control w-75 input-sm me-1" type="search" name="katakunci" placeholder="Masukkan kata kunci" value="{{ Request::get('katakunci') }}" aria-label="Search">
         <button type="submit" class="btn btn-sm btn-primary">Cari</button>
       </form>
       <div class="p-0">
@@ -53,14 +55,15 @@
           </td>
           @empty
           <td colspan="6">
-            <h5 class="text-center bi bi-database-fill-dash"> Tidak Ada Data</h5>
+            <h5 class="text-center fw-bold"><i class="bi bi-database-fill-x"></i> Tidak Ada Data</h5>
           </td>
           @endforelse
       </tbody>
     </table>
-    <div>
-      {{ $role->links() }}
-    </div>
   </div>
+  <div>
+    {{ $role->links() }}
+  </div>
+</div>
 
-  @endsection
+@endsection

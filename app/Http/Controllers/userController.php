@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -15,40 +16,36 @@ class userController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $katakunci = $request->katakunci;
         $role = DB::table('user')
             ->join('role', 'user.id_role', '=', 'role.id_role')
             ->select('user.*', 'role.*')
             ->paginate(6);
+
+        if (strlen($katakunci)) {
+            $data = user::where('username', 'like', "%$katakunci%")
+                ->orWhere('email', 'like', "%$katakunci%");
+        } else {
+            $data = user::orderBy('id_user', 'desc');
+        }
+        return view('user.index', compact('role'))->with('user', $data);
         // dd($role);
-        return view('user.index', compact('role'));
     }
 
-    public function search(Request $request)
-    {
-        $search = $request->input('search');
-
-        $role = DB::table('user')
-            ->Where('username', 'like', "%" . $search . "%")
-            ->paginate(6);
-        return view('user.index', compact('role'));
-    }
-    // public function search(Request $request)
+    // public function searchuser(Request $request)
     // {
-    // $katakunci = $request->katakunci;
-    // $jumlahbaris = 4;
-    // if(strlen($katakunci)){
-    //     $search = User::where('nama_role','like',"%katakunci%")
-    //     ->orwhere('username','like',"%katakunci%")
-    //     ->orWhere('email','like',"%katakunci%")
-    //     ->orWhere('password','like',"%katakunci%")
-    //     ->paginate($jumlahbaris);
-    // } else {
-    //     $search= User::orderBy('id_role', 'desc')->paginate($jumlahbaris);
-    // };
-    // return view('mahasiswa.index')->with('data1', $search);
 
+    //     $katakunci = $request->katakunci;
+    //     $role = DB::table('user')
+    //         ->select('id_user', 'id_role', 'username', 'email', 'password')
+    //         ->where('username', 'like', "%$katakunci%")
+    //         ->orWhere('email', 'like', "%$katakunci%")
+    //         ->orderBy('username', 'asc')
+    //         ->get();
+
+    //     return view('user.index', compact('role'));
     // }
 
     /**
@@ -131,6 +128,20 @@ class userController extends Controller
      */
     public function update(Request $request)
     {
+        $request->validate([
+            'id_role' => 'required',
+            'username' => 'required',
+            'email' => 'required',
+            'password' => 'required|min:5',
+        ], [
+            'id_role.required' => 'role wajib diplih',
+            'username.required' => 'username wajib diisi',
+            'username.unique' => 'username wajib diisi',
+            'email.required' => 'email wajib diisi',
+            'password.required' => 'password wajib diisi',
+            'password.min' => 'password minimal 5 karakter',
+        ]);
+
         // dd($request->all());
         User::where('id_user', $request->input('id_user'))->update([
             'id_role' => $request->input('id_role'),
@@ -139,7 +150,7 @@ class userController extends Controller
             'password' => $request->input('password'),
         ]);
 
-        return redirect('user');
+        return redirect()->to('user')->with('success', 'berhasil update data');
     }
 
     /**

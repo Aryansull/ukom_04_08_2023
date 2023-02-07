@@ -20,16 +20,25 @@
   </div>
   <div class="mb-3">
     <label class="form-label">username</label>
-    <input type="text" class="form-control" name="username" value="{{ $user->username}}">
+    <input type="text" class="form-control @error('username') is-invalid @enderror"" name=" username" value="{{ $user->username}}">
     <input type="hidden" name="id_user" value="{{$user->id_user}}" />
+    @error('username')
+    <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
   </div>
   <div class="mb-3">
     <label class="form-label">email</label>
-    <input type="email" class="form-control" name="email" value="{{ $user->email}}">
+    <input type="email" class="form-control @error('email') is-invalid @enderror" name=" email" value="{{ $user->email}}">
+    @error('email')
+    <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
   </div>
   <div class="mb-3">
     <label class="form-label">password</label>
-    <input type="text" class="form-control" name="password" value="{{ $user->password}}">
+    <input type="text" class="form-control @error('password') is-invalid @enderror" name=" password" value="{{ $user->password }}">
+    @error('password')
+    <div class="invalid-feedback">{{ $message }}</div>
+    @enderror
   </div>
   <div class="d-flex justify-content-end">
     <button type="submit" class="btn btn-primary mx-2" name="submit">Simpan</button>
