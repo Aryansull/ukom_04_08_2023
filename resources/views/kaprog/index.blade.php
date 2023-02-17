@@ -27,6 +27,7 @@
                 <tr>
                     <th>No.</th>
                     <th scope="col">Username</th>
+                    <th scope="col">Email</th>
                     <th scope="col">nama kaprog</th>
                     <th scope="col">foto </th>
                     <th scope="col">Aksi </th>
@@ -39,12 +40,17 @@
                 <tr>
                     <td>{{ $user->firstItem() + $item}}</td>
                     <td scope="row"> {{ $key->username }} </td>
+                    <td scope="row"> {{ $key->email }} </td>
                     <td scope="row"> {{ $key->nama_kaprog }} </td>
-                    <td scope="row"> {{ $key->foto }} </td>
+                    <td>
+                        <a href="{{ asset('storage/'.$key->foto) }}" target="_blank" class="group">
+                            <img src="{{ asset('storage/'.$key->foto) }}" alt="" style="width: 80px; height: 80px;">
+                        </a>
+                    </td>
                     <td>
                         <div class="d-grid gap-2 d-md-block">
-                            <a href={{url('kaprog/'.$key->id_user.'/edit')}} class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
-                            <form onsubmit="return confirm('yakin mao diapus?')" class="d-inline" action="{{url('user/'.$key->id_user)}}" method="post">
+                            <a href={{url('kaprog/'.$key->id_kaprog.'/edit')}} class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
+                            <form onsubmit="return confirm('yakin mao diapus?')" class="d-inline" action="{{url('kaprog/'.$key->id_kaprog)}}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" name="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash3-fill"></i></button>

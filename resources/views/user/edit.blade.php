@@ -1,7 +1,7 @@
 @extends('layout.template')
 @section('content')
 
-<form action='{{ url('user/.$user->id_user') }}' method='post' class="bg-white shadow-lg p-3 w-50 mx-auto ">
+<form action='{{url('user/'.$user->id_user)}}' method='post' class="bg-white shadow-lg p-3 w-50 mx-auto ">
   @csrf
   @method('PUT')
   <h4 class="fw-bold text-center">Form Edit User</h4>
@@ -20,7 +20,7 @@
   </div>
   <div class="mb-3">
     <label class="form-label">username</label>
-    <input type="text" class="form-control @error('username') is-invalid @enderror"" name=" username" value="{{ $user->username}}">
+    <input type="text" class="form-control @error('username') is-invalid @enderror" name=" username" value="{{ $user->username}}">
     <input type="hidden" name="id_user" value="{{$user->id_user}}" />
     @error('username')
     <div class="invalid-feedback">{{ $message }}</div>

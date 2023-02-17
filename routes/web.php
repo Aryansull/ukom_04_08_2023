@@ -5,6 +5,8 @@ use App\Http\Controllers\mahasiswaController;
 use App\Http\Controllers\roleController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\kaprogController;
+use App\Http\Controllers\ruanganController;
+
 use App\Http\Controllers\PostController;
 
 /*
@@ -34,8 +36,6 @@ Route::get('/', function () {
     return view('dashboard.index');
 });
 
-Route::resource('mahasiswa', mahasiswaController::class);
-
 Route::resource('role', roleController::class);
 
 Route::resource('user', userController::class);
@@ -44,6 +44,8 @@ Route::resource('user', userController::class);
 Route::get('/kaprog', [kaprogController::class, 'index']);
 Route::get('/kaprog/create', [kaprogController::class, 'create']);
 Route::post('/kaprog/store', [kaprogController::class, 'store']);
-Route::get('/kaprog/edit/{id}', [kaprogController::class, 'edit']);
+Route::get('/kaprog/{id}/edit', [kaprogController::class, 'edit']);
 Route::post('/kaprog/edit/update', [kaprogController::class, 'update']);
 Route::get('/kaprog/destory/{id}', [kaprogController::class, 'destory']);
+
+Route::resource('ruangan', ruanganController::class);

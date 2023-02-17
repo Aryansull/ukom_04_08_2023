@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
-use Exception;
 use App\Models\User;
 
 class userController extends Controller
@@ -22,7 +20,7 @@ class userController extends Controller
         $role = DB::table('user')
             ->join('role', 'user.id_role', '=', 'role.id_role')
             ->select('user.*', 'role.*')
-            ->paginate(6);
+            ->paginate(5);
 
         if (strlen($katakunci)) {
             $data = user::where('username', 'like', "%$katakunci%")
@@ -70,6 +68,10 @@ class userController extends Controller
 
     public function store(Request $request)
     {
+        Session::flash('id_role', $request->id_role);
+        Session::flash('username', $request->username);
+        Session::flash('email', $request->email);
+        Session::flash('password', $request->password);
 
         $request->validate([
             'id_role' => 'required',
@@ -112,7 +114,7 @@ class userController extends Controller
 
     public function edit($id = null)
     {
-        $user = User::where('id_user', $id)->join('role', 'user.id_role', '=', 'role.id_role')->first();
+        $user = User::where('id_user', $id)->first();
         $role = DB::table('role')->get();
 
 

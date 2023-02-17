@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Kaprog;
+use Illuminate\Support\Facades\Session;
 
 use Illuminate\Http\Request;
 
@@ -45,15 +46,22 @@ class kaprogController extends Controller
      */
     public function store(Request $request)
     {
+        Session::flash('id_user', $request->id_user);
+        Session::flash('nama_kaprog', $request->nama_kaprog);
+
         $request->validate([
             'id_user' => 'required',
             'nama_kaprog' => 'required',
-            'foto' => 'required'
+            'foto' => 'required|mimes:jpeg,png,jpg'
+
         ], [
             'id_user.required' => 'user wajib diplih',
             'nama_kaprog.required' => 'nama_kaprog wajib diisi',
-            'foto.required' => 'foto wajib diisi'
+            'foto.required' => 'foto wajib diisi',
+            'foto.mimes' => 'foto_ruanngan hanya boleh jpeg,png,jpg ',
         ]);
+
+        $image = $request->file('foto')->store('kaprog');
 
         $Array = DB::select('SELECT new_id_kaprog() AS id_kaprog');
         $kode_baru = $Array[0]->id_kaprog;
@@ -61,7 +69,7 @@ class kaprogController extends Controller
             'id_kaprog' => $kode_baru,
             'id_user' => $request->id_user,
             'nama_kaprog' => $request->nama_kaprog,
-            'foto' => $request->foto
+            'foto' => $image
         ]);
 
         return redirect()->to('kaprog')->with('success', 'berhasil tambah data');
@@ -86,7 +94,11 @@ class kaprogController extends Controller
      */
     public function edit($id)
     {
-        //
+        $kaprog = Kaprog::where('id_kaprog', $id)->first();
+        $user = DB::table('user')->get();
+
+
+        return view('kaprog.edit', ['kaprog' => $kaprog], compact('user'));
     }
 
     /**

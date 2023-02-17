@@ -13,7 +13,7 @@
 
 <body>
 
-  <div class="d-flex bg-white" id="wrapper">
+  <div class="d-flex" id="wrapper">
     <!-- sidebar start-->
     <div class="bg-light" id="sidebar-wrapper">
       <div class="sidebar-heading">
@@ -27,25 +27,25 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="user">
+          <a class="nav-link" href="{{url('user')}}">
             <span data-feather="file" class="align-text-bottom"></span>
             <i class="bi bi-kanban-fill mr-2"></i> Manage Akun
           </a>
         </li>
         <li class="nav-item  has-submenu">
-          <a class="nav-link" href="/kaprog">
+          <a class="nav-link" href="{{url('kaprog')}}">
             <span data-feather="shopping-cart" class="align-text-bottom"></span>
             <i class="bi bi-people-fill mr-2 dropdown-toggle " data-bs-toggle=" dropdown" aria-expanded="false"></i> Manage User
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="jurusan">
             <span data-feather="users" class="align-text-bottom"></span>
             <i class="bi bi-mortarboard-fill mr-2"></i> Jurusan
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="ruangan">
             <span data-feather="bar-chart-2" class="align-text-bottom"></span>
             <i class="bi bi-house-fill"></i> Ruangan
           </a>
