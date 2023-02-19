@@ -6,6 +6,7 @@ use App\Http\Controllers\roleController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\kaprogController;
 use App\Http\Controllers\ruanganController;
+use App\Http\Controllers\jurusanController;
 
 use App\Http\Controllers\PostController;
 
@@ -47,5 +48,13 @@ Route::post('/kaprog/store', [kaprogController::class, 'store']);
 Route::get('/kaprog/{id}/edit', [kaprogController::class, 'edit']);
 Route::post('/kaprog/edit/update', [kaprogController::class, 'update']);
 Route::get('/kaprog/destory/{id}', [kaprogController::class, 'destory']);
+
+// jurusan
+Route::get('/jurusan', [jurusanController::class, 'index']);
+Route::get('/jurusan/create', [jurusanController::class, 'create']);
+Route::post('/jurusan/store', [jurusanController::class, 'store']);
+Route::get('/jurusan/{id}/edit', [jurusanController::class, 'edit']);
+Route::post('/jurusan/edit/update', [jurusanController::class, 'update']);
+Route::get('/jurusan/destory/{id}', [jurusanController::class, 'destory']);
 
 Route::resource('ruangan', ruanganController::class);

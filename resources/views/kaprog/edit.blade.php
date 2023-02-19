@@ -1,7 +1,7 @@
 @extends('layout.template')
 @section('content')
 
-<form action="/kaprog/{{ $kaprog->id_kaprog }}" method='post' class="bg-white shadow-lg p-3 w-50 mx-auto ">
+<form action="/kaprog/{{ $kaprog->id_kaprog }}" method="post" enctype="multipart/form-data" class="bg-white shadow-lg p-3 w-50 mx-auto ">
     @csrf
     @method('PUT')
     <h4 class="fw-bold text-center">Form Edit Kaprog</h4>
@@ -27,15 +27,12 @@
         @enderror
     </div>
     <div class="mb-3">
-        <label class="form-label">Foto Kaprog</label>
-        <input type="text" class="form-control @error('foto') is-invalid @enderror" name=" foto" value="{{ $kaprog->foto }}">
-        @error('foto')
-        <div class="invalid-feedback">{{ $message }}</div>
-        @enderror
+        <label for="foto" class="form-label">Foto Kaprog</label>
+        <input type="file" class="form-control" name='foto' id="foto" value="{{ $kaprog->foto}}">
     </div>
     <div class="d-flex justify-content-end">
-        <button type="submit" class="btn btn-primary mx-2" name="submit">Simpan</button>
-        <a href="/user"><button type="button" class="btn btn-danger">Kembali</button></a>
+        <a href="kaprog"><button type="submit" class="btn btn-primary mx-2" name="submit">Simpan</button></a>
+        <a href="/kaprog"><button type="button" class="btn btn-danger">Kembali</button></a>
     </div>
 </form>
 @endsection

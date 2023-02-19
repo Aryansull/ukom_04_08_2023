@@ -110,7 +110,27 @@ class kaprogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'id_user' => 'required',
+            'nama_kaprog' => 'required',
+            'foto' => 'required|mimes:jpeg,png,jpg'
+
+        ], [
+            'id_user.required' => 'user wajib diplih',
+            'nama_kaprog.required' => 'nama_kaprog wajib diisi',
+            'foto.required' => 'foto wajib diisi',
+            'foto.mimes' => 'foto_ruanngan hanya boleh jpeg,png,jpg ',
+        ]);
+
+        $image = $request->file('foto')->update('kaprog');
+        // dd($request->all());
+        Kaprog::where('id_kaprog', $request->input('id_kaprog'))->update([
+            'id_user' => $request->input('id_user'),
+            'nama_kaprog' => $request->input('nama_kaprog'),
+            'foto' => $image
+        ]);
+
+        return redirect()->to('kaprog')->with('success', 'berhasil update data');
     }
 
     /**

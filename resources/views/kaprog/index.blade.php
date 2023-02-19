@@ -24,12 +24,12 @@
     <div class="table-responsive">
         <table class="table">
             <thead class="table-light">
-                <tr>
+                <tr class="text-center">
                     <th>No.</th>
+                    <th scope="col">foto </th>
                     <th scope="col">Username</th>
                     <th scope="col">Email</th>
                     <th scope="col">nama kaprog</th>
-                    <th scope="col">foto </th>
                     <th scope="col">Aksi </th>
                 </tr>
             </thead>
@@ -37,16 +37,16 @@
                 <?php $no = 1; ?>
             <tbody>
                 @forelse ($user as $item => $key)
-                <tr>
-                    <td>{{ $user->firstItem() + $item}}</td>
-                    <td scope="row"> {{ $key->username }} </td>
-                    <td scope="row"> {{ $key->email }} </td>
-                    <td scope="row"> {{ $key->nama_kaprog }} </td>
+                <tr class="text-center">
+                    <td>{{ $user->firstItem() + $item}}.</td>
                     <td>
                         <a href="{{ asset('storage/'.$key->foto) }}" target="_blank" class="group">
                             <img src="{{ asset('storage/'.$key->foto) }}" alt="" style="width: 80px; height: 80px;">
                         </a>
                     </td>
+                    <td scope="row"> {{ $key->username }} </td>
+                    <td scope="row"> {{ $key->email }} </td>
+                    <td scope="row"> {{ $key->nama_kaprog }} </td>
                     <td>
                         <div class="d-grid gap-2 d-md-block">
                             <a href={{url('kaprog/'.$key->id_kaprog.'/edit')}} class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>

@@ -109,7 +109,7 @@ class ruanganController extends Controller
     public function edit($id)
     {
         $data = ruangan::where('id_ruangan', $id)->first();
-        return view('Admin.ruangan.edit')->with('data', $data);
+        return view('ruangan.edit')->with('data', $data);
     }
 
 
